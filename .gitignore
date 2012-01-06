@@ -1,0 +1,11 @@
+.installed.cfg
+.mr.developer.cfg
+bin/
+develop-eggs/
+docs/make.bat
+etc/development.ini
+etc/nginx.conf
+fabfile.py
+include/
+lib/
+parts/
