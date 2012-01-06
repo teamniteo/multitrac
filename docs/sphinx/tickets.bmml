@@ -7,7 +7,7 @@
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="410" y="178" w="986" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::LinkBar" x="1218" y="142" w="-1" h="-1" measuredW="178" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::LinkBar" x="1218" y="142" w="-1" h="-1" measuredW="179" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Hours%2C%20Tickets%2C%20Settings</text>
       </controlProperties>
@@ -33,8 +33,8 @@
         <hasHeader>false</hasHeader>
         <hLines>true</hLines>
         <selectedIndex>-1</selectedIndex>
-        <text>56%2C%20Ticket%20title%201%0A90%2C%20Ticket%20title%202</text>
-        <vLines>true</vLines>
+        <text>%2356%3A%20Ticket%20title%201%0A%2390%3A%20Ticket%20title%202</text>
+        <vLines>false</vLines>
       </controlProperties>
     </control>
     <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="425" y="354" w="-1" h="-1" measuredW="59" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
@@ -49,14 +49,14 @@
         <text>Project%202</text>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::DataGrid" x="425" y="499" w="365" h="66" measuredW="124" measuredH="67" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::DataGrid" x="425" y="499" w="365" h="66" measuredW="125" measuredH="67" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>square</borderStyle>
         <hasHeader>false</hasHeader>
         <hLines>true</hLines>
         <selectedIndex>-1</selectedIndex>
-        <text>12%2C%20Ticket%20title%201%0A34%2C%20Ticket%20title%202</text>
-        <vLines>true</vLines>
+        <text>%2312%3A%20Ticket%20title%201%0A%2334%3A%20Ticket%20title%202</text>
+        <vLines>false</vLines>
       </controlProperties>
     </control>
   </controls>
