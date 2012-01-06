@@ -3,5 +3,5 @@ Definitions of basic terms
 
 .. glossary::
 
-    First Item
-        Explain first item and add more.
+    Trac
+        A single instance of a popular issue-tracker Trac.

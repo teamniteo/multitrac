@@ -8,6 +8,7 @@ Table of Contents
    :maxdepth: 3
 
    glossary.rst
+   ui.rst
    api.rst
 
 .. include:: ../HISTORY.rst

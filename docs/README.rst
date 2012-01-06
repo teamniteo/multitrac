@@ -5,7 +5,7 @@ Track multiple Tracs
 :Project title: MultiTrac
 :Project id: multitrac
 :Author: NiteoWeb Ltd.
-:Source: https://niteoweb.repositoryhosting.com/svn/niteoweb_multitrac
+:Source: https://github.com/niteoweb/MultiTrac
 :Docs: http://readthedocs.org/docs/multitrac
 :Framework: Pyramid
 
