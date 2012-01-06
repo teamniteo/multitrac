@@ -8,8 +8,8 @@ Miscellaneous
 
 Utility functions, interfaces and exceptions.
 
-.. automodule:: zulu
+.. automodule:: multitrac
     :members:
 
-.. automodule:: zulu.interfaces
+.. automodule:: multitrac.interfaces
     :members:

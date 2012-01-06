@@ -11,9 +11,9 @@ import os
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = read('src', 'zulu', 'version.txt').strip()
+version = read('src', 'multitrac', 'version.txt').strip()
 
-setup(name='zulu',
+setup(name='multitrac',
       version=version,
       description="A portal for young entrepreneurs in Slovenia.",
       long_description=read('docs', 'README.rst') +
@@ -34,7 +34,7 @@ setup(name='zulu',
       package_dir={'': 'src'},
       include_package_data=True,
       zip_safe=False,
-      test_suite='zulu',
+      test_suite='multitrac',
       install_requires=[
           # list project dependencies
           'niteoweb.fabfile',
@@ -50,7 +50,7 @@ setup(name='zulu',
       ],
       entry_points="""\
       [paste.app_factory]
-      main = zulu:main
+      main = multitrac:main
       """,
 #      paster_plugins=['pyramid'],
       )

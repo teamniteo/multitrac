@@ -1,24 +1,24 @@
-============
-Zulu project
-============
+====================
+Track multiple Tracs
+====================
 
-:Project title: Zulu
-:Project id: zulu
+:Project title: MultiTrac
+:Project id: multitrac
 :Author: NiteoWeb Ltd.
-:URL: http://zulu.com
-:Docs: https://sphinx.niteoweb.com/zulu
-:Source: https://niteoweb.repositoryhosting.com/svn/niteoweb_zulu
+:Source: https://niteoweb.repositoryhosting.com/svn/niteoweb_multitrac
+:Docs: http://readthedocs.org/docs/multitrac
 :Framework: Pyramid
-:Server: Omega
 
 Quick Start
 ===========
 
-.. sourcecode:: bash
+Start hacking away on this project by running::
 
   $ cd ~/work
-  $ svn co https://niteoweb.repositoryhosting.com/svn/niteoweb_zulu/zulu/trunk zulu
-  $ cd zulu/
+  $ mkdir multitrac
+  $ cd multitrac
+  $ git clone git@github.com:niteoweb/MultiTrac.git
   $ virtualenv -p python2.6 --no-site-packages ./
-  $ bin/python bootstrap.py
-  $ bin/buildout
+  $ bin/python bootstrap.py -c development.cfg
+  $ bin/buildout -c development.cfg
+  $ bin/paster serve etc/development.ini

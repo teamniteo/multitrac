@@ -1,6 +1,6 @@
 #---------- App Configuration ----------
-[app:zulu]
-use = egg:zulu
+[app:multitrac]
+use = egg:multitrac
 reload_templates = false
 debug_authorization = false
 debug_notfound = false
@@ -14,7 +14,7 @@ sqlalchemy.url = ${buildout:sqlalchemy_url}
 use = egg:WebError#error_catcher
 debug = false
 error_email = maintenance@niteoweb.com
-from_address = ${paster}@zuludb.net
+from_address = ${paster}@multitrac.niteoweb.com
 smtp_server = localhost
 
 [filter:tm]
@@ -25,7 +25,7 @@ commit_veto = repoze.tm:default_commit_veto
 pipeline =
     weberror
     tm
-    zulu
+    multitrac
 
 #---------- Server Configuration ----------
 [server:main]
@@ -35,7 +35,7 @@ port = ${port}
 
 #---------- Logging Configuration ----------
 [loggers]
-keys = root, zulu, sqlalchemy
+keys = root, multitrac, sqlalchemy
 
 [handlers]
 keys = console
@@ -47,10 +47,10 @@ keys = generic
 level = WARN
 handlers = console
 
-[logger_zulu]
+[logger_multitrac]
 level = WARN
 handlers =
-qualname = zulu
+qualname = multitrac
 
 [logger_sqlalchemy]
 level = WARN
