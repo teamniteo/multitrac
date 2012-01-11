@@ -10,8 +10,11 @@ def main(global_config, **settings):
     initialize_sql(engine)
     config = Configurator(settings=settings)
     config.add_static_view('static', 'multitrac:static')
-    config.add_route('home', '/', view='multitrac.views.my_view',
-                     view_renderer='templates/mytemplate.pt')
+    config.scan('multitrac')
+    config.add_route('root', '/')
+    config.add_route('settings', '/settings')
+    config.add_route('tickets', '/tickets')
+    config.add_route('hours', '/hours')
     return config.make_wsgi_app()
 
 
