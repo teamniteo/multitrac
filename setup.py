@@ -47,6 +47,7 @@ setup(name='multitrac',
           'transaction',
           'unittest2',
           'zope.sqlalchemy',
+          'pyramid_simpleform',
       ],
       entry_points="""\
       [paste.app_factory]
