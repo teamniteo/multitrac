@@ -1,0 +1,23 @@
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="master">
+    <tal:block metal:fill-slot="nav">
+            <li><a href="/hours">Hours</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/settings">Settings</a></li>
+    </tal:block>
+    <tal:block metal:fill-slot="content">
+                <div class="page-header">
+                    <h1>Welcome <small>to multitrac</small></h1>
+                </div>
+                <div class="app-content">
+                  <h2>Please choose the view: </h2>
+                  <a href="/hours" class="btn">Hours</a>
+                  <a href="/tickets" class="btn">Tickets</a>
+                  <a href="/settings" class="btn">Settings</a>
+                </div>
+    </tal:block>
+</html>

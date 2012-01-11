@@ -1,0 +1,12 @@
+body {
+  padding-top: 50px;
+}
+
+.topbar div> .nav {
+  float:right;
+}
+
+.footer {
+  clear: both;
+  margin-top: 40px;
+}
