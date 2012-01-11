@@ -27,11 +27,11 @@ class MyModel(Base):
 
 def populate():
     session = DBSession()
-    model = MyModel(name=u'root', value=55)
+    model = User(name=u'root')
     session.add(model)
     session.flush()
     transaction.commit()
-    
+
 def initialize_sql(engine):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
@@ -40,3 +40,11 @@ def initialize_sql(engine):
         populate()
     except IntegrityError:
         DBSession.rollback()
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(Unicode(255), unique=True)
+
+    def __init__(self, name):
+        self.name = name
