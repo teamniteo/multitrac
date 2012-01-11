@@ -14,7 +14,14 @@
                     <h1>Tickets <small>display the tickets per user</small></h1>
                 </div>
                 <div class="app-content">
-                    <h2>Main content</h2>
+      <div class="form">
+      ${renderer.begin()}
+      <div class="clearfix">
+        ${renderer.label(formdata.name[0]) }
+        ${renderer.select(formdata.name[0], formdata.options[0] )}
+      </div>
+      ${renderer.submit("/tickets", "Show")}
+        ${renderer.end()}
                 </div>
     </tal:block>
 </html>

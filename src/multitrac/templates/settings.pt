@@ -14,7 +14,26 @@
                     <h1>Settings <small></small></h1>
                 </div>
                 <div class="app-content">
-                    <h2>Main content</h2>
+
+                   <!--TODO: Change to pyramid_simpleform-->
+
+                  <form>
+
+                  <h3>Tracs</h3>
+                  <p>Tracs that we will query, one per line. Format: &lt;username&gt;|&lt;password&gt;|&lt;url&gt; </p>
+                  <div class="input">
+                  <textarea class="xxlarge" rows="15" name="tracs" ></textarea>
+                  </div>
+
+                  <h3>Users</h3>
+                  <p>Enter users that can be selected from the dropdown, one per line. Format: &lt;username&gt;</p>
+                  <div class="input">
+                  <textarea class="xxlarge" rows="15" name="users" ></textarea>
+                  </div>
+                  <div class="actions">
+                  <input type="submit" value="Save" />
+                  </div>
+                  </form>
                 </div>
     </tal:block>
 </html>

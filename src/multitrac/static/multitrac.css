@@ -10,3 +10,24 @@ body {
   clear: both;
   margin-top: 40px;
 }
+
+label {
+  float: none;
+  width: 0px;
+}
+
+form .clearfix {
+  display: inline;
+  margin: 18px;
+}
+
+.inline {
+  display: inline;
+  font-size: 15px;
+  font-weight:bold;
+
+}
+
+select {
+  width: 150px;
+}
