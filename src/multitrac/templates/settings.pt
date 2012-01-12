@@ -15,25 +15,25 @@
                 </div>
                 <div class="app-content">
 
-                   <!--TODO: Change to pyramid_simpleform-->
-
-                  <form>
+                  ${renderer.begin()}
 
                   <h3>Tracs</h3>
                   <p>Tracs that we will query, one per line. Format: &lt;username&gt;|&lt;password&gt;|&lt;url&gt; </p>
                   <div class="input">
-                  <textarea class="xxlarge" rows="15" name="tracs" ></textarea>
+                  ${renderer.textarea("tracs", rows=15, class_="xxlarge")}
                   </div>
 
                   <h3>Users</h3>
                   <p>Enter users that can be selected from the dropdown, one per line. Format: &lt;username&gt;</p>
                   <div class="input">
-                  <textarea class="xxlarge" rows="15" name="users" ></textarea>
+                  ${renderer.textarea("users", rows=15, class_="xxlarge")}
                   </div>
+
                   <div class="actions">
-                  <input type="submit" value="Save" />
+                  ${renderer.submit("/settings","Save")}
                   </div>
-                  </form>
+
+                  ${renderer.end()}
                 </div>
     </tal:block>
 </html>

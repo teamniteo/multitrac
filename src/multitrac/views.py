@@ -79,5 +79,7 @@ def tickets_view(request):
 def settings_view(request):
     """docstring for settings_view"""
     master = get_renderer('templates/master.pt').implementation()
-    return { "master":master}
+    form = Form(request)
+
+    return dict(master=master, renderer=FormRenderer(form))
 
