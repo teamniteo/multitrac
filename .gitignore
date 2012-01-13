@@ -11,4 +11,4 @@ lib/
 parts/
 docs/doctrees
 docs/html
-src/niteoweb.tracer/
+src/niteoweb.tracer
