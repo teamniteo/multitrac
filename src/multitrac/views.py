@@ -87,22 +87,27 @@ def hours_view(request):
     formdata.options.append(users)
 
     formdata.name.append("Month")
-    months = ["None"]
+    none = [(0, "None")]
+    months = none[:]
+    weeks = none[:]
     for month in range(-1, -9, -1):
         firstday, lastday = t.get_edge_days_month(month)
-        months.append(firstday.strftime("%Y-%m-%d ") +
-                "=>" +
-                lastday.strftime(" %Y-%m-%d"))
+        months.append((month,
+            firstday.strftime("%Y-%m-%d ") +
+            "=>" +
+            lastday.strftime(" %Y-%m-%d")
+            ))
     formdata.options.append(months)
 
     formdata.name.append("Week")
-    weeks = ["None"]
     for week in range(-1, -9, -1):
         firstday, lastday = t.get_edge_days_week(week)
         lastday = lastday + relativedelta(days=-1)
-        weeks.append(firstday.strftime("%Y-%m-%d ") +
-                "=>" +
-                lastday.strftime(" %Y-%m-%d"))
+        weeks.append((week,
+            firstday.strftime("%Y-%m-%d ") +
+            "=>" +
+            lastday.strftime(" %Y-%m-%d")
+            ))
     formdata.options.append(weeks)
 
     form = Form(request)

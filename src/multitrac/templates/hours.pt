@@ -23,12 +23,12 @@
       </div>
       <div class="clearfix">
         ${renderer.label(formdata.name[1]) }
-        ${renderer.select(formdata.name[1], [formdata.options[1], formdata.values] )}
+        ${renderer.select(formdata.name[1], formdata.options[1] )}
       </div>
       <p class="inline">or</p>
       <div class="clearfix">
         ${renderer.label(formdata.name[2]) }
-        ${renderer.select(formdata.name[2], [formdata.options[2], formdata.values] )}
+        ${renderer.select(formdata.name[2], formdata.options[2] )}
       </div>
         ${renderer.submit("/hours", "Show")}
         <div tal:condition="formdata.error">
