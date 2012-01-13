@@ -19,10 +19,6 @@ class Formdata(object):
         self.name = []
         self.options = []
 
-    def get_months(self):
-        """docstring for calc_months"""
-        pass
-
     def form_parser(self, data):
         """docstring for users_parser"""
         data = data.split("\r\n")
@@ -51,15 +47,6 @@ class Formdata(object):
         string = "\r\n".join(list)
         return string
 
-    def get_tracs(self):
-        """docstring for get_tracs"""
-        pass
-
-    def get_weeks(self):
-        """docstring for get_weeks"""
-        pass
-
-
 def my_view(request):
     dbsession = DBSession()
     root = dbsession.query(MyModel).filter(MyModel.name==u'root').first()
@@ -78,8 +65,17 @@ def hours_view(request):
 
     t = tracer.core.TrackUtil()
     formdata = Formdata()
+    formdata.error = False
     with open("sql/users") as file:
         users = pickle.load(file)
+
+    if request.params:
+        month = int(request.params.getall("Month")[0])
+        week = int(request.params.getall("Week")[0])
+        if not ( month == 0 or week == 0):
+            formdata.error = True
+        else:
+            pass
 
     formdata.values = range(0, -9, -1)
 
@@ -112,7 +108,6 @@ def hours_view(request):
 
     form = Form(request)
 
-    formdata.error = False
 
 
     return dict(master=master, renderer=FormRenderer(form), formdata=formdata)
