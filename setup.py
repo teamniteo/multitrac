@@ -48,6 +48,8 @@ setup(name='multitrac',
           'unittest2',
           'zope.sqlalchemy',
           'pyramid_simpleform',
+          'niteoweb.tracer',
+          "python-dateutil",
       ],
       entry_points="""\
       [paste.app_factory]
