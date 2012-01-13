@@ -20,13 +20,13 @@
                   <h3>Tracs</h3>
                   <p>Tracs that we will query, one per line. Format: &lt;username&gt;|&lt;password&gt;|&lt;url&gt; </p>
                   <div class="input">
-                  ${renderer.textarea("tracs", rows=15, class_="xxlarge")}
+                  ${renderer.textarea("tracs", formdata.tracs, rows=15, class_="xxlarge")}
                   </div>
 
                   <h3>Users</h3>
                   <p>Enter users that can be selected from the dropdown, one per line. Format: &lt;username&gt;</p>
                   <div class="input">
-                  ${renderer.textarea("users", rows=15, class_="xxlarge")}
+                  ${renderer.textarea("users", formdata.users, rows=15, class_="xxlarge")}
                   </div>
 
                   <div class="actions">
