@@ -6,11 +6,12 @@ from pyramid.renderers import get_renderer
 from pyramid.response import Response
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
-import tracer.core
 from dateutil.relativedelta import relativedelta
 
 from multitrac.models import DBSession
 from multitrac.models import User
+
+from multitrac.trac import *
 
 class Formdata(object):
     """docstring for Formdata"""
@@ -63,7 +64,6 @@ def hours_view(request):
     """docstring for hours_view"""
     master = get_renderer('templates/master.pt').implementation()
 
-    t = tracer.core.TrackUtil()
     formdata = Formdata()
     formdata.error = False
     with open("sql/users") as file:
@@ -87,7 +87,7 @@ def hours_view(request):
     months = none[:]
     weeks = none[:]
     for month in range(-1, -9, -1):
-        firstday, lastday = t.get_edge_days_month(month)
+        firstday, lastday = get_edge_days_month(month)
         months.append((month,
             firstday.strftime("%Y-%m-%d ") +
             "=>" +
@@ -97,7 +97,7 @@ def hours_view(request):
 
     formdata.name.append("Week")
     for week in range(-1, -9, -1):
-        firstday, lastday = t.get_edge_days_week(week)
+        firstday, lastday = get_edge_days_week(week)
         lastday = lastday + relativedelta(days=-1)
         weeks.append((week,
             firstday.strftime("%Y-%m-%d ") +

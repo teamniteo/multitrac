@@ -6,76 +6,16 @@ from collections import namedtuple
 
 from dateutil.relativedelta import relativedelta
 
+from multitrac.date import *
+
 class TrackUtil(object):
     """docstring for TrackUtil"""
     def __init__(self):
         super(TrackUtil, self).__init__()
 
-    def insert_auth(self, url, username, password):
-        """Simple function that inserts the username and password before the @"""
-        if "{username}" in url and "{password}" in url:
-            # look at a better function
-            self.url_template = url.format(username=username, password=password, repository="{repository}")
-        else:
-            self.url = url
-
-    def set_url(self, url):
-        """Set url"""
-        # do properties  like in c#
-        self.url = url
-
     def connect(self):
         """Connect to the xmlrpc server"""
         self.server = ServerProxy(self.url)
-
-    def insert_repo(self, repo):
-        if "{repository}" in self.url_template:
-            self.url = self.url_template.format(repository=repo)
-        else:
-            return self.url
-
-    def get_edge_days_month(self, rel_month=-1):
-        """get the first day of month and first of next month """
-
-        today = date.today()
-        midnight = time.min
-
-        reldate = today + relativedelta(months=rel_month)
-
-        last_day = reldate + relativedelta(day=1, months=+1)
-        first_day = reldate + relativedelta(day=1)
-
-        lastday, firstday = datetime.combine(last_day, midnight), datetime.combine(first_day, midnight)
-
-        return firstday, lastday
-
-    def get_edge_days_week(self, rel_week=-1):
-        """get first day of week and first day of nexy week"""
-
-        today = date.today()
-        midnight = time.min
-
-        reldate = today + relativedelta(weeks=rel_week)
-
-        last_day = reldate + relativedelta(weekday=0)
-        first_day = reldate + relativedelta(weeks=-1, weekday=0)
-
-        lastday, firstday = datetime.combine(last_day, midnight), datetime.combine(first_day, midnight)
-
-        return firstday, lastday
-
-    def set_abs_month(self, abs_month, abs_year=None):
-        """docstring for set_abs_month"""
-        if not abs_year:
-            abs_year = date.now().year
-
-        midnight = time.min
-
-        firstday = date(abs_year, abs_month)
-        self.firstday = datetime.combine(firstday, midnight)
-
-        lastday = date(abs_year, abs_month + 1)
-        self.lastday = datetime.combine(lastday, midnight)
 
     def get_recent_tickets(self):
         """docstring for get_recent_tickets"""
