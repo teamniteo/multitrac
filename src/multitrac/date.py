@@ -2,8 +2,7 @@ from datetime import datetime, timedelta, date, time
 
 from dateutil.relativedelta import relativedelta
 
-
-def get_edge_days_month(self, rel_month=-1):
+def get_edge_days_month(rel_month=-1):
     """get the first day of month and first of next month """
 
     today = date.today()
@@ -18,7 +17,7 @@ def get_edge_days_month(self, rel_month=-1):
 
     return firstday, lastday
 
-def get_edge_days_week(self, rel_week=-1):
+def get_edge_days_week(rel_week=-1):
     """get first day of week and first day of nexy week"""
 
     today = date.today()
@@ -33,7 +32,7 @@ def get_edge_days_week(self, rel_week=-1):
 
     return firstday, lastday
 
-def get_abs_month(self, abs_month, abs_year=None):
+def get_abs_month(abs_month, abs_year=None):
     """docstring for set_abs_month"""
     if not abs_year:
         abs_year = date.now().year
