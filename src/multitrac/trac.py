@@ -77,31 +77,3 @@ class HourCalculator(TrackUtil):
         return self.users
 
 
-def get_hours(username=None, password=None, repos=None, url=None):
-    """function that is called by get_hours script"""
-
-    # Url is missing
-    if not (username and password and repos):
-        print("This function takes 3 arguments: username, password, repos and url")
-
-    # TODO: billable
-    repositories = repos
-
-    h = HourCalculator()
-    h.firstday, h.lastday = h.get_edge_days_month()
-    print(h.firstday, h.lastday,)
-    h.insert_auth(url, username, password)
-    for repo in repositories:
-        h.insert_repo(repo)
-        h.connect()
-        tickets = h.get_recent_tickets()
-        print(h.get_active_tickets("zupo"))
-        if not tickets:
-            continue
-        comments = h.get_comments(tickets)
-        print(repo)
-        print(h.calculate_hours(comments))
-
-if __name__ == "__main__":
-
-    get_hours()
