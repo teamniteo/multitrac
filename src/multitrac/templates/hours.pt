@@ -39,6 +39,19 @@
         ${renderer.end()}
       </div>
 
+      <tal:block  tal:repeat="repository repositories">
+      <h3>${repository}</h3>
+      <table tal:condition="hours">
+      	<tr>
+      		<td>Bilable</td>
+          <td>${hours[repeat.repository.index][0]}</td>
+      	</tr>
+      	<tr>
+      		<td>Non-bilable</td>
+          <td>${hours[repeat.repository.index][1]}</td>
+      	</tr>
+      </table>
+      </tal:block>
 
     </div>
     </tal:block>
