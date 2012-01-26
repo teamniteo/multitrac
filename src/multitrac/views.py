@@ -101,10 +101,7 @@ def hours_view(request):
     weeks = none[:]
     for month in range(-1, -9, -1):
         # foo
-        print month
         firstday, lastday = date.get_edge_days_month(month)
-        print date.get_edge_days_month(month)
-        print firstday, lastday
         months.append((month,
             firstday.strftime("%Y-%m-%d ") +
             "=>" +
