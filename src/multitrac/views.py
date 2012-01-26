@@ -3,17 +3,12 @@ import types
 
 from pyramid.view import view_config
 from pyramid.renderers import get_renderer
-from pyramid.response import Response
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
 from dateutil.relativedelta import relativedelta
 
-from multitrac.models import DBSession
-from multitrac.models import User
-
 import multitrac.trac
 import multitrac.date as date
-
 
 
 class Formdata(object):
@@ -26,7 +21,7 @@ class Formdata(object):
     def form_parser(self, data):
         """docstring for users_parser"""
         data = data.split("\r\n")
-        data[:] =  [item for item in data if item]
+        data[:] = [item for item in data if item]
         if not data:
             data = None
             return data
@@ -55,7 +50,7 @@ class Formdata(object):
 def root_view(request):
     """docstring for root_view"""
     master = get_renderer('templates/master.pt').implementation()
-    return { "master":master}
+    return {"master": master}
 
 @view_config(route_name="hours", renderer='templates/hours.pt')
 def hours_view(request):
@@ -73,12 +68,11 @@ def hours_view(request):
     all_hours = []
     hours = []
 
-
     if request.params:
         user = request.params.getall("Users")[0]
         month = int(request.params.getall("Month")[0])
         week = int(request.params.getall("Week")[0])
-        if not ( month == 0 or week == 0):
+        if not (month == 0 or week == 0):
             formdata.error = True
         else:
             for trac in tracs:
@@ -95,8 +89,6 @@ def hours_view(request):
                     hours = h.calculate_hours(tickets, user)
                 all_hours.append(hours)
                 repositories.append(h.get_repository_name(trac[2]))
-
-
 
     formdata.values = range(0, -9, -1)
 
@@ -133,13 +125,12 @@ def hours_view(request):
 
     form = Form(request)
 
-
-
     return dict(master=master,
             renderer=FormRenderer(form),
             formdata=formdata,
             repositories=repositories,
             hours=all_hours)
+
 
 @view_config(route_name="tickets", renderer='templates/tickets.pt')
 def tickets_view(request):
@@ -156,7 +147,6 @@ def tickets_view(request):
     rep_tickets = []
     repositories = []
 
-
     h = multitrac.trac.TrackUtil()
 
     if request.params:
@@ -170,15 +160,13 @@ def tickets_view(request):
                 for id in active_tickets:
                     name = h.get_ticket_name(id)
                     url = h.get_ticket_url(id)
-                    ticket = [id, name, url ]
+                    ticket = [id, name, url]
                     rep_tickets.append(ticket)
 
                 # trac[2] url
                 all_tickets.append(rep_tickets)
                 rep_tickets = []
                 repositories.append(h.get_repository_name(trac[2]))
-
-
 
     formdata.name.append("Users")
     formdata.options.append(users)
@@ -191,6 +179,7 @@ def tickets_view(request):
             tickets=all_tickets,
             repositories=repositories
             )
+
 
 @view_config(route_name="settings", renderer='templates/settings.pt')
 def settings_view(request):
@@ -219,8 +208,6 @@ def settings_view(request):
 
     tracs = formdata.create_text(tracs)
     users = formdata.create_text(users)
-
-
 
     formdata.tracs = tracs or None
     formdata.users = users or None

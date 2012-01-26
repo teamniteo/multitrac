@@ -15,6 +15,7 @@ from zope.sqlalchemy import ZopeTransactionExtension
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
+
 class MyModel(Base):
     __tablename__ = 'models'
     id = Column(Integer, primary_key=True)
@@ -25,12 +26,14 @@ class MyModel(Base):
         self.name = name
         self.value = value
 
+
 def populate():
     session = DBSession()
     model = User(name=u'root')
     session.add(model)
     session.flush()
     transaction.commit()
+
 
 def initialize_sql(engine):
     DBSession.configure(bind=engine)
@@ -40,6 +43,7 @@ def initialize_sql(engine):
         populate()
     except IntegrityError:
         DBSession.rollback()
+
 
 class User(Base):
     __tablename__ = 'users'

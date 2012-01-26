@@ -1,10 +1,6 @@
 from __future__ import print_function
-from ConfigParser import ConfigParser
-from datetime import datetime, timedelta, date, time
 from xmlrpclib import ServerProxy
 from collections import namedtuple
-
-from dateutil.relativedelta import relativedelta
 
 from multitrac.date import *
 
@@ -37,7 +33,7 @@ class TrackUtil(object):
         url = "/".join(temp)
         return url
 
-    def get_recent_tickets(self ):
+    def get_recent_tickets(self):
         """docstring for get_recent_tickets"""
         tickets = self.server.ticket.getRecentChanges(self.firstday)
         #tickets  = self.server.ticket.query("owner=ielectric")
@@ -46,7 +42,7 @@ class TrackUtil(object):
     def get_active_tickets(self, user):
         """docstring for get_active_tickets"""
         active = self.server.ticket.query("status!=closed")
-        byuser = self.server.ticket.query("owner="+user)
+        byuser = self.server.ticket.query("owner=" + user)
         set_ = set(active).intersection(set(byuser))
         return list(set_)
 
@@ -103,12 +99,14 @@ class HourCalculator(TrackUtil):
                 Comment = namedtuple('Comment', 'date user tag hours')
                 c = Comment(comment[0], comment[1], comment[2], comment[4])
 
-                if self.firstday < c.date <= self.lastday and c.tag == "hours" and c.user == user:
-                    if not c.hours:
-                        pass
-                    else:
-                        if billable:
-                            self.hours[0] += float(c.hours)
+                if self.firstday < c.date <= self.lastday \
+                    and c.tag == "hours" \
+                    and c.user == user:
+                        if not c.hours:
+                            pass
                         else:
-                            self.hours[1] += float(c.hours)
+                            if billable:
+                                self.hours[0] += float(c.hours)
+                            else:
+                                self.hours[1] += float(c.hours)
         return self.hours

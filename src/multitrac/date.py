@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta, date, time
+from datetime import datetime, date, time
 
 from dateutil.relativedelta import relativedelta
+
 
 def get_edge_days_month(rel_month=-1):
     """get the first day of month and first of next month """
@@ -13,9 +14,11 @@ def get_edge_days_month(rel_month=-1):
     last_day = reldate + relativedelta(day=1, months=+1)
     first_day = reldate + relativedelta(day=1)
 
-    lastday, firstday = datetime.combine(last_day, midnight), datetime.combine(first_day, midnight)
+    lastday = datetime.combine(last_day, midnight)
+    firstday = datetime.combine(first_day, midnight)
 
     return firstday, lastday
+
 
 def get_edge_days_week(rel_week=-1):
     """get first day of week and first day of nexy week"""
@@ -28,9 +31,11 @@ def get_edge_days_week(rel_week=-1):
     last_day = reldate + relativedelta(weekday=0)
     first_day = reldate + relativedelta(weeks=-1, weekday=0)
 
-    lastday, firstday = datetime.combine(last_day, midnight), datetime.combine(first_day, midnight)
+    lastday = datetime.combine(last_day, midnight)
+    firstday = datetime.combine(first_day, midnight)
 
     return firstday, lastday
+
 
 def get_abs_month(abs_month, abs_year=None):
     """docstring for set_abs_month"""
@@ -46,4 +51,3 @@ def get_abs_month(abs_month, abs_year=None):
     lastday = datetime.combine(lastday, midnight)
 
     return firstday, lastday
-
