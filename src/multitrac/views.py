@@ -11,7 +11,10 @@ from dateutil.relativedelta import relativedelta
 from multitrac.models import DBSession
 from multitrac.models import User
 
-from multitrac.trac import *
+import multitrac.trac
+import multitrac.date as date
+
+
 
 class Formdata(object):
     """docstring for Formdata"""
@@ -48,11 +51,6 @@ class Formdata(object):
         string = "\r\n".join(list)
         return string
 
-def my_view(request):
-    dbsession = DBSession()
-    root = dbsession.query(MyModel).filter(MyModel.name==u'root').first()
-    return { 'project':'multitrac'}
-
 @view_config(route_name="root", renderer='templates/root.pt')
 def root_view(request):
     """docstring for root_view"""
@@ -64,18 +62,41 @@ def hours_view(request):
     """docstring for hours_view"""
     master = get_renderer('templates/master.pt').implementation()
 
-    formdata = Formdata()
-    formdata.error = False
+    with open("sql/tracs") as file:
+        tracs = pickle.load(file)
     with open("sql/users") as file:
         users = pickle.load(file)
 
+    formdata = Formdata()
+    formdata.error = False
+    repositories = []
+    all_hours = []
+    hours = []
+
+
     if request.params:
+        user = request.params.getall("Users")[0]
         month = int(request.params.getall("Month")[0])
         week = int(request.params.getall("Week")[0])
         if not ( month == 0 or week == 0):
             formdata.error = True
         else:
-            pass
+            for trac in tracs:
+                h = multitrac.trac.HourCalculator()
+                h.set_server_url(*trac)
+                h.connect()
+                if month == 0:
+                    h.firstday, h.lastday = date.get_edge_days_week(week)
+                    tickets = h.get_recent_tickets()
+                    hours = h.calculate_hours(tickets, user)
+                if week == 0:
+                    h.firstday, h.lastday = date.get_edge_days_month(month)
+                    tickets = h.get_recent_tickets()
+                    hours = h.calculate_hours(tickets, user)
+                all_hours.append(hours)
+                repositories.append(h.get_repository_name(trac[2]))
+
+
 
     formdata.values = range(0, -9, -1)
 
@@ -87,7 +108,11 @@ def hours_view(request):
     months = none[:]
     weeks = none[:]
     for month in range(-1, -9, -1):
-        firstday, lastday = get_edge_days_month(month)
+        # foo
+        print month
+        firstday, lastday = date.get_edge_days_month(month)
+        print date.get_edge_days_month(month)
+        print firstday, lastday
         months.append((month,
             firstday.strftime("%Y-%m-%d ") +
             "=>" +
@@ -97,7 +122,7 @@ def hours_view(request):
 
     formdata.name.append("Week")
     for week in range(-1, -9, -1):
-        firstday, lastday = get_edge_days_week(week)
+        firstday, lastday = date.get_edge_days_week(week)
         lastday = lastday + relativedelta(days=-1)
         weeks.append((week,
             firstday.strftime("%Y-%m-%d ") +
@@ -110,24 +135,62 @@ def hours_view(request):
 
 
 
-    return dict(master=master, renderer=FormRenderer(form), formdata=formdata)
+    return dict(master=master,
+            renderer=FormRenderer(form),
+            formdata=formdata,
+            repositories=repositories,
+            hours=all_hours)
 
 @view_config(route_name="tickets", renderer='templates/tickets.pt')
 def tickets_view(request):
     """docstring for tickets_view"""
     master = get_renderer('templates/master.pt').implementation()
 
-    formdata = Formdata()
-
+    with open("sql/tracs") as file:
+        tracs = pickle.load(file)
     with open("sql/users") as file:
         users = pickle.load(file)
+
+    formdata = Formdata()
+    all_tickets = []
+    rep_tickets = []
+    repositories = []
+
+
+    h = multitrac.trac.TrackUtil()
+
+    if request.params:
+        user = request.params.getall("Users")[0]
+        for trac in tracs:
+            #h = TrackUtil()
+            h.set_server_url(*trac)
+            h.connect()
+            active_tickets = h.get_active_tickets(user)
+            if active_tickets:
+                for id in active_tickets:
+                    name = h.get_ticket_name(id)
+                    url = h.get_ticket_url(id)
+                    ticket = [id, name, url ]
+                    rep_tickets.append(ticket)
+
+                # trac[2] url
+                all_tickets.append(rep_tickets)
+                rep_tickets = []
+                repositories.append(h.get_repository_name(trac[2]))
+
+
 
     formdata.name.append("Users")
     formdata.options.append(users)
 
     form = Form(request)
 
-    return dict(master=master, renderer=FormRenderer(form), formdata=formdata)
+    return dict(master=master,
+            renderer=FormRenderer(form),
+            formdata=formdata,
+            tickets=all_tickets,
+            repositories=repositories
+            )
 
 @view_config(route_name="settings", renderer='templates/settings.pt')
 def settings_view(request):
