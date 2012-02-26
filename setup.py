@@ -15,7 +15,7 @@ version = read('src', 'multitrac', 'version.txt').strip()
 
 setup(name='multitrac',
       version=version,
-      description="A portal for young entrepreneurs in Slovenia.",
+      description="A pyramid application to manage multiple Trac installations",
       long_description=read('docs', 'README.rst') +
                        read('docs', 'HISTORY.rst') +
                        read('docs', 'LICENSE.rst'),
