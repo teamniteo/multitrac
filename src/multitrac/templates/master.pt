@@ -6,7 +6,7 @@
 
     <head>
 
-        <title>MultiTrac</title>
+        <title>multitrac</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="${request.static_url('multitrac:static/multitrac.css')}" type="text/css" media="screen" charset="utf-8" />
@@ -18,7 +18,7 @@
         <div class="topbar">
             <div class="fill">
                 <div class="container">
-                    <a class="brand" href="/">MultiTrac</a>
+                    <a class="brand" href="/">multitrac</a>
                     <ul class="nav" >
                         <tal:block metal:define-slot="nav">
                         </tal:block>

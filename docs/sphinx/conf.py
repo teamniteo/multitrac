@@ -36,7 +36,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'MultiTrac'
+project = u'multitrac'
 copyright = u'%s, NiteoWeb Ltd.' % datetime.now().year
 
 # The version info for the project you're documenting, acts as replacement for
@@ -171,7 +171,7 @@ htmlhelp_basename = 'niteowebmultitracdoc'
 latex_documents = [
   ('index',
    'multitrac.tex',
-  u'MultiTrac Documentation',
+  u'multitrac Documentation',
   u'', 'manual'
   ),
 ]
