@@ -3,7 +3,6 @@ Track multiple Tracs
 ====================
 
 :Project title: multitrac
-:Project id: multitrac
 :Author: NiteoWeb Ltd.
 :Source: https://github.com/niteoweb/multitrac
 :Docs: http://readthedocs.org/docs/multitrac
