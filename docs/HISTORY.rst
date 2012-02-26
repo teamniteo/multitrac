@@ -1,10 +1,11 @@
 =========
 Changelog
 =========
-    
 
-0.1 (unreleased)
+
+1.0 (2010-02-26)
 ================
 
 - Initial release.
-  [zupo]
+  [brodul, zupo]
+
